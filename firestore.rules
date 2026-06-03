@@ -57,6 +57,14 @@ service cloud.firestore {
     match /presence/{sessionId} {
       allow read, write: if true;
     }
+    match /user_bingos/{bingoId} {
+      allow read, write: if isSignedIn() && request.auth.uid == bingoId;
+    }
+
+    match /leaderboard/{userId} {
+      allow read: if true;
+      allow write: if isSignedIn() && request.auth.uid == userId; // Allow users to update their own leaderboard score (normally this is backend only, but we'll allow it for this demo)
+    }
   }
 }
 

@@ -8,6 +8,8 @@ import ProfilePage from './components/ProfilePage';
 import Login from './components/Login';
 import HomePage from './components/HomePage';
 import CreateMatch from './components/CreateMatch';
+import Bingo from './components/Bingo';
+import Leaderboard from './components/Leaderboard';
 
 export default function App() {
   return (
@@ -15,7 +17,9 @@ export default function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/create-match" element={<CreateMatch />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/bingo" element={<Bingo />} />
+        <Route path="/leaderboard" element={<Leaderboard />} />
+        <Route path="/login" element={<><HomePage /><Login /></>} />
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>

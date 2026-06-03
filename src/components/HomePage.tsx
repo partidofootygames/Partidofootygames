@@ -104,19 +104,18 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-[#050b15] text-white font-sans">
       {/* --- NAVBAR --- */}
-      <nav className="border-b border-white/10 bg-[#050b15]/80 backdrop-blur-md sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
-          <div className="flex items-center gap-8">
-            <Link to="/" className="flex items-center gap-2">
-               <div className="w-8 h-8 bg-emerald-500 rounded flex items-center justify-center font-bold text-black">P</div>
-               <span className="font-black tracking-tighter text-xl">PARTIDO</span>
+      <nav className="border-b border-white/10 bg-[#050b15]/80 backdrop-blur-md sticky top-0 z-50 py-2">
+        <div className="max-w-7xl mx-auto px-4 h-20 flex items-center justify-between">
+          <div className="flex items-center gap-4 md:gap-8">
+            <Link to="/" className="flex items-center gap-2 mr-4">
+               <img src="https://i.ibb.co/TDLxT8V8/Adobe-Express-file.png" alt="Partido Logo" className="h-16 md:h-20 object-contain drop-shadow-xl" />
             </Link>
             <div className="hidden md:flex gap-6 text-sm font-medium text-slate-400">
               <Link to="/" className="text-white">Home</Link>
-              <Link to="#" className="hover:text-white transition">Bingo</Link>
+              <Link to="/bingo" className="hover:text-white transition">Bingo</Link>
               <Link to="#" className="hover:text-white transition">Tenaball</Link>
               <Link to="#" className="hover:text-white transition">Missing 11</Link>
-              <Link to="#" className="hover:text-white transition">Leaderboard</Link>
+              <Link to="/leaderboard" className="hover:text-white transition">Leaderboard</Link>
             </div>
           </div>
 
@@ -137,7 +136,6 @@ export default function HomePage() {
                </Link>
             ) : (
                <button onClick={() => navigate("/login")} className="bg-white hover:bg-slate-200 text-black px-4 py-2 rounded-lg font-bold flex items-center gap-2 transition cursor-pointer">
-                  <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" className="w-4 h-4" alt="Google" />
                   Inloggen
                </button>
             )}
@@ -163,10 +161,10 @@ export default function HomePage() {
             The daily home of football trivia. Build your streak, climb the leaderboard, and bully your group chat with the share button.
           </p>
           <div className="flex justify-center gap-4 pt-4">
-            <button className="bg-emerald-500 hover:bg-emerald-400 text-black px-8 py-4 rounded-full font-black flex items-center gap-2 transition transform hover:scale-105 cursor-pointer">
+            <button onClick={() => navigate('/bingo')} className="bg-emerald-500 hover:bg-emerald-400 text-black px-8 py-4 rounded-full font-black flex items-center gap-2 transition transform hover:scale-105 cursor-pointer">
               Play today's Bingo <ChevronRight className="w-5 h-5" />
             </button>
-            <button className="bg-white/5 border border-white/10 hover:bg-white/10 text-white px-8 py-4 rounded-full font-black flex items-center gap-2 transition cursor-pointer">
+            <button onClick={() => navigate('/leaderboard')} className="bg-white/5 border border-white/10 hover:bg-white/10 text-white px-8 py-4 rounded-full font-black flex items-center gap-2 transition cursor-pointer">
               <Trophy className="w-5 h-5 text-yellow-500" /> Leaderboard
             </button>
           </div>
@@ -235,6 +233,7 @@ export default function HomePage() {
               icon={<Target className="w-8 h-8 text-rose-500" />}
               tag="DAILY"
               color="border-rose-500/20"
+              onClick={() => navigate('/bingo')}
             />
             <GameCard 
               title="Tenaball" 
@@ -282,9 +281,9 @@ function TimeBox({ unit, value }: any) {
   );
 }
 
-function GameCard({ title, desc, icon, tag, color }: any) {
+function GameCard({ title, desc, icon, tag, color, onClick }: any) {
   return (
-    <div className={`bg-white/5 border ${color} p-6 rounded-3xl hover:bg-white/10 transition group cursor-pointer`}>
+    <div onClick={onClick} className={`bg-white/5 border ${color} p-6 rounded-3xl hover:bg-white/10 transition group cursor-pointer`}>
       <div className="flex justify-between items-start mb-6">
         <div className="bg-white/10 p-3 rounded-2xl group-hover:scale-110 transition transition-transform">
           {icon}
