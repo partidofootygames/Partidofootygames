@@ -1,0 +1,33 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User profile containing stats, position, and bio for the sports application.",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "description": "User ID matching Auth." },
+        "displayName": { "type": "string", "description": "User's display name." },
+        "photoURL": { "type": "string", "description": "User's profile photo URL." },
+        "bio": { "type": "string", "description": "Talk about playstyle." },
+        "position": { "type": "string", "enum": ["Striker", "Midfielder", "Defender", "Goalkeeper", "Unassigned"], "description": "Preferred sporting position." },
+        "stats": {
+          "type": "object",
+          "properties": {
+            "level": { "type": "number" },
+            "matchesPlayed": { "type": "number" },
+            "goals": { "type": "number" },
+            "mvpCount": { "type": "number" },
+            "reliabilityScore": { "type": "number" }
+          }
+        }
+      },
+      "required": ["uid"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/User" },
+      "description": "User profile collection."
+    }
+  }
+}
